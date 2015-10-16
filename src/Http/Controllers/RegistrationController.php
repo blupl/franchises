@@ -1,11 +1,12 @@
-<?php namespace Blupl\Franchises\Http\Controllers\Admin;
+<?php namespace Blupl\Franchises\Http\Controllers;
 
-use Blupl\Franchises\Model\Franchises;
+use Blupl\Franchises\Model\Franchise;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Blupl\Franchises\Processor\Franchises as FranchisesProcessor;
 use Orchestra\Foundation\Http\Controllers\AdminController;
 
-class HomeController extends AdminController
+class RegistrationController extends AdminController
 {
 
     public function __construct(FranchisesProcessor $processor)
@@ -67,20 +68,20 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function edit($franchises)
-     {
+    public function edit($franchises)
+    {
         return $this->processor->edit($this, $franchises);
-     }
+    }
 
     /**
      * Create the role.
      *
      * @return mixed
      */
-     public function store()
-     {
-        return $this->processor->store($this, Input::all());
-     }
+    public function store(Request $request )
+    {
+        return $this->processor->store($this, $request);
+    }
 
     /**
      * Update the role.
@@ -152,12 +153,12 @@ class HomeController extends AdminController
      *
      * @param  object  $validation
      *
-  ;   * @return mixed
+    ;   * @return mixed
      */
-     public function storeValidationFailed($validation)
-     {
+    public function storeValidationFailed($validation)
+    {
         return $this->redirectWithErrors(handles('orchestra::franchises/reporter/create'), $validation);
-     }
+    }
 
     /**
      * Response when storing role failed.
@@ -166,12 +167,12 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function storeFailed(array $error)
-     {
+    public function storeFailed(array $error)
+    {
         $message = trans('orchestra/foundation::response.db-failed', $error);
 
-        return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
-     }
+        return $this->redirectWithMessage(handles('blupl::franchise/registration'), $message);
+    }
 
     /**
      * Response when storing user succeed.
@@ -180,14 +181,14 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function storeSucceed(franchises $franchises)
-     {
+    public function storeSucceed(franchises $franchises)
+    {
         $message = trans('blupl/franchises::response.franchises.create', [
             'name' => $franchises->getAttribute('name')
         ]);
 
-            return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
-     }
+        return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
+    }
 
     /**
      * Response when updating role failed on validation.
@@ -197,10 +198,10 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function updateValidationFailed($validation, $id)
-     {
+    public function updateValidationFailed($validation, $id)
+    {
         return $this->redirectWithErrors(handles("orchestra::franchises/reporter/{$id}/edit"), $validation);
-     }
+    }
 
     /**
      * Response when updating role failed.
@@ -209,12 +210,12 @@ class HomeController extends AdminController
      *
      * @return mixed
      */
-     public function updateFailed(array $errors)
-     {
+    public function updateFailed(array $errors)
+    {
         $message = trans('orchestra/foundation::response.db-failed', $errors);
 
         return $this->redirectWithMessage(handles('orchestra::franchises/reporter'), $message);
-     }
+    }
 
     /**
      * Response when updating role succeed.
@@ -255,7 +256,7 @@ class HomeController extends AdminController
             'name' => $franchises->getAttribute('name')
         ]);
 
-   ;     return $this->redirectWithMessage(handles('orchestra::franchises'), $message);
+        ;     return $this->redirectWithMessage(handles('orchestra::franchises'), $message);
     }
 
     /**
