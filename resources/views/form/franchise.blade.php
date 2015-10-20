@@ -1,6 +1,9 @@
 @set_meta('title', 'Franchise Form')
 
-{!! Form::open(['handles'=>'blupl/franchise::management/franchise']) !!}
+{!! Form::open(['url'=>'franchise/management/franchise']) !!}
+{!! Form::hidden('user_id', Auth::user()->id) !!}
+{!! Form::hidden('franchise_id', Auth::user()->franchise->id) !!}
+
 <fieldset>
     <div class="form-group">
         <div class="col-md-6">
@@ -9,7 +12,7 @@
         </div>
         <div class="col-md-6">
             {!! Form::label('name_franchise', 'NAME OF FRANCHISE') !!}
-            {!! Form::text('name_franchise', null, ['class'=>'form-control']) !!}
+            {!! Form::select('name_franchise', [Auth::user()->franchise->id=>Auth::user()->franchise->name], Auth::user()->franchise->id, ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
         </div>
     </div>
     <div class="form-group">
@@ -19,14 +22,14 @@
         </div>
         <div class="col-md-6">
             {!! Form::label('designation', 'DESIGNATION') !!}
-            {!! Form::select('designation', ['chairman'=>'Chairman', 'managing-director'=>'Managing Director', 'director'=>'Director'], null, ['class'=>'form-control select2']) !!}
+            {!! Form::select('designation', ['chairman'=>'Chairman', 'managing-director'=>'Managing Director', 'director'=>'Director'], null, ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-6">
             {!! Form::label('gender', 'GENDER') !!}
-            {!! Form::select('gender', ['male'=>'Male', 'female'=>'Female', 'other'=>'Other'], null, ['class'=>'form-control select2']) !!}
+            {!! Form::select('gender', ['male'=>'Male', 'female'=>'Female', 'other'=>'Other'], null, ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
         </div>
         <div class="col-md-6">
             {!! Form::label('mobile', 'CONTACT PHONE NUMBER') !!}
@@ -75,6 +78,11 @@
     </div>
 </fieldset>
 <fieldset>
-    {!! Form::submit('Submit', ['class'=>'form-control']) !!}
+    <div class="divider"></div>
+    <div class="form-group">
+        <div class="col-md-12">
+            {!! Form::submit('Submit', ['class'=>'btn-success']) !!}
+        </div>
+    </div>
 </fieldset>
 {!! FOrm::close() !!}

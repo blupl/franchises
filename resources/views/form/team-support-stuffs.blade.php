@@ -1,17 +1,20 @@
 @set_meta('title', 'Team Support Stuffs')
 
 
-{!! Form::open(['handles'=>'blupl/franchise::management/team-support-stuffs']) !!}
+{!! Form::open(['url'=>'franchise/management/team-support-stuffs']) !!}
+{!! Form::hidden('user_id', Auth::user()->id) !!}
+{!! Form::hidden('franchise_id', Auth::user()->franchise->id) !!}
 
 <fieldset>
     <div class="form-group">
         <div class="col-md-6">
             {!! Form::label('accredit_category', 'ACCREDITATION CATEGORY') !!}
-            {!! Form::text('accredit_category', null, ['class'=>'form-control']) !!}
+            {!! Form::text('accredit_category', 'Franchise', ['class'=>'form-control', 'readonly']) !!}
         </div>
         <div class="col-md-6">
             {!! Form::label('name_franchise', 'NAME OF FRANCHISE') !!}
-            {!! Form::text('name_franchise', null, ['class'=>'form-control']) !!}
+            {!! Form::select('name_franchise', [Auth::user()->franchise->id=>Auth::user()->franchise->name], Auth::user()->franchise->id, ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
+
         </div>
     </div>
     <div class="form-group">
@@ -32,87 +35,89 @@
         </div>
         <div class="col-md-6">
             {!! Form::label('role', 'ROLE') !!}
-            {!! Form::text('role', null, ['class'=>'form-control']) !!}
+            {!! Form::text('role', 'Team Support Stuff', ['class'=>'form-control', 'readonly']) !!}
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-6">
             {!! Form::label('date_of_birth', 'DATE OF BIRTH') !!}
-            {!! Form::text('date_of_birth', null, ['class'=>'form-control']) !!}
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::text('date_of_birth', null, ['class'=>'form-control', 'data-inputmask'=>"'alias': 'dd/mm/yyyy'",  'data-mask']) !!}
+            </div>
         </div>
         <div class="col-md-6">
-            <div class="col-md-12">
                 {!! Form::label('permanent_address', 'PERMANENT ADDRESS') !!}
                 {!! Form::text('permanent_address1', null, ['class'=>'form-control', 'placeholder'=>'Line 1']) !!}
                 {!! Form::text('permanent_address2', null, ['class'=>'form-control', 'placeholder'=>'Line 1']) !!}
-            </div>
             <div class="col-md-6">
-                {!! Form::select('permanent_city', [
-                'barguna'=>'Barguna'
-                'barisal'=>'Barisal'
-                'bhola'=>'Bhola'
-                'bogra'=>'Bogra'
-                'jhalokati'=>'Jhalokati'
-                'patuakhali'=>'Patuakhali'
-                'pirojpur'=>'Pirojpur'
-                'bandarban'=>'Bandarban'
-                'brahmanbaria'=>'Brahmanbaria'
-                'chandpur'=>'Chandpur'
-                'chittagong'=>'Chittagong'
-                'comilla'=>'Comilla'
-                'cox-bazar'=>'Cox&rsquo;s Bazar'
-                'feni'=>'Feni'
-                'khagrachhari'=>'Khagrachhari'
-                'lakshmipur'=>'Lakshmipur'
-                'noakhali'=>'Noakhali'
-                'rangamati'=>'Rangamati'
-                'dhaka'=>'Dhaka'
-                'faridpur'=>'Faridpur'
-                'gazipur'=>'Gazipur'
-                'gopalganj'=>'Gopalganj'
-                'kishoreganj'=>'Kishoreganj'
-                'madaripur'=>'Madaripur'
-                'manikganj'=>'Manikganj'
-                'munshiganj'=>'Munshiganj'
-                'narayanganj'=>'Narayanganj'
-                'narsingdi'=>'Narsingdi'
-                'rajbari'=>'Rajbari'
-                'shariatpur'=>'Shariatpur'
-                'tangail'=>'Tangail'
-                'bagerhat'=>'Bagerhat'
-                'chuadanga'=>'Chuadanga'
-                'jessore'=>'Jessore'
-                'jhenaidah'=>'Jhenaidah'
-                'khulna'=>'Khulna'
-                'kushtia'=>'Kushtia'
-                'magura'=>'Magura'
-                'meherpur'=>'Meherpur'
-                'narail'=>'Narail'
-                'satkhira'=>'Satkhira'
-                'jamalpur'=>'Jamalpur'
-                'mymensingh'=>'Mymensingh'
-                'netrakona'=>'Netrakona'
-                'sherpur'=>'Sherpur'
-                'joypurhat'=>'Joypurhat'
-                'naogaon'=>'Naogaon'
-                'natore'=>'Natore'
-                'chapainawabganj'=>'Chapainawabganj'
-                'pabna'=>'Pabna'
-                'rajshahi'=>'Rajshahi'
-                'sirajganj'=>'Sirajganj'
-                'dinajpur'=>'Dinajpur'
-                'gaibandha'=>'Gaibandha'
-                'kurigram'=>'Kurigram'
-                'lalmonirhat'=>'Lalmonirhat'
-                'nilphamari'=>'Nilphamari'
-                'panchagarh'=>'Panchagarh'
-                'rangpur'=>'Rangpur'
-                'thakurgaon'=>'Thakurgaon'
-                'habiganj'=>'Habiganj'
-                'moulvibazar'=>'Moulvibazar'
-                'sunamganj'=>'Sunamganj'
+                {!! Form::select('permanent_district', [
+                'barguna'=>'Barguna',
+                'bhola'=>'Bhola',
+                'bogra'=>'Bogra',
+                'jhalokati'=>'Jhalokati',
+                'patuakhali'=>'Patuakhali',
+                'pirojpur'=>'Pirojpur',
+                'bandarban'=>'Bandarban',
+                'brahmanbaria'=>'Brahmanbaria',
+                'chandpur'=>'Chandpur',
+                'chittagong'=>'Chittagong',
+                'comilla'=>'Comilla',
+                'cox-bazar'=>'Cox&rsquo;s Bazar',
+                'feni'=>'Feni',
+                'khagrachhari'=>'Khagrachhari',
+                'lakshmipur'=>'Lakshmipur',
+                'noakhali'=>'Noakhali',
+                'rangamati'=>'Rangamati',
+                'dhaka'=>'Dhaka',
+                'faridpur'=>'Faridpur',
+                'gazipur'=>'Gazipur',
+                'gopalganj'=>'Gopalganj',
+                'kishoreganj'=>'Kishoreganj',
+                'madaripur'=>'Madaripur',
+                'manikganj'=>'Manikganj',
+                'munshiganj'=>'Munshiganj',
+                'narayanganj'=>'Narayanganj',
+                'narsingdi'=>'Narsingdi',
+                'rajbari'=>'Rajbari',
+                'shariatpur'=>'Shariatpur',
+                'tangail'=>'Tangail',
+                'bagerhat'=>'Bagerhat',
+                'chuadanga'=>'Chuadanga',
+                'jessore'=>'Jessore',
+                'jhenaidah'=>'Jhenaidah',
+                'khulna'=>'Khulna',
+                'kushtia'=>'Kushtia',
+                'magura'=>'Magura',
+                'meherpur'=>'Meherpur',
+                'narail'=>'Narail',
+                'satkhira'=>'Satkhira',
+                'jamalpur'=>'Jamalpur',
+                'mymensingh'=>'Mymensingh',
+                'netrakona'=>'Netrakona',
+                'sherpur'=>'Sherpur',
+                'joypurhat'=>'Joypurhat',
+                'naogaon'=>'Naogaon',
+                'natore'=>'Natore',
+                'chapainawabganj'=>'Chapainawabganj',
+                'pabna'=>'Pabna',
+                'rajshahi'=>'Rajshahi',
+                'sirajganj'=>'Sirajganj',
+                'dinajpur'=>'Dinajpur',
+                'gaibandha'=>'Gaibandha',
+                'kurigram'=>'Kurigram',
+                'lalmonirhat'=>'Lalmonirhat',
+                'nilphamari'=>'Nilphamari',
+                'panchagarh'=>'Panchagarh',
+                'rangpur'=>'Rangpur',
+                'thakurgaon'=>'Thakurgaon',
+                'habiganj'=>'Habiganj',
+                'moulvibazar'=>'Moulvibazar',
+                'sunamganj'=>'Sunamganj',
                 'sylhet'=>'Sylhet'
-                ], null, ['class'=>'form-control select2', 'placeholder'=>'District-Choose from list']) !!}
+                ], 'dhaka', ['class'=>'form-control select2', 'placeholder'=>'District-Choose from list', 'style'=>'width: 100%;']) !!}
             </div>
             <div class="col-md-6">
                 {!! Form::text('permanent_zip', null, ['class'=>'form-control', 'placeholder'=>'Post Code']) !!}
@@ -126,78 +131,75 @@
             {!! Form::text('mobile', null, ['class'=>'form-control']) !!}
         </div>
         <div class="col-md-6">
-            <div class="col-md-12">
                 {!! Form::label('present_address', 'PRESENT ADDRESS') !!}
                 {!! Form::text('present_address1', null, ['class'=>'form-control', 'placeholder'=>'Line 1']) !!}
                 {!! Form::text('present_address2', null, ['class'=>'form-control', 'placeholder'=>'Line 1']) !!}
-            </div>
             <div class="col-md-6">
-                {!! Form::select('permanent_city', [
-                'barguna'=>'Barguna'
-                'barisal'=>'Barisal'
-                'bhola'=>'Bhola'
-                'bogra'=>'Bogra'
-                'jhalokati'=>'Jhalokati'
-                'patuakhali'=>'Patuakhali'
-                'pirojpur'=>'Pirojpur'
-                'bandarban'=>'Bandarban'
-                'brahmanbaria'=>'Brahmanbaria'
-                'chandpur'=>'Chandpur'
-                'chittagong'=>'Chittagong'
-                'comilla'=>'Comilla'
-                'cox-bazar'=>'Cox&rsquo;s Bazar'
-                'feni'=>'Feni'
-                'khagrachhari'=>'Khagrachhari'
-                'lakshmipur'=>'Lakshmipur'
-                'noakhali'=>'Noakhali'
-                'rangamati'=>'Rangamati'
-                'dhaka'=>'Dhaka'
-                'faridpur'=>'Faridpur'
-                'gazipur'=>'Gazipur'
-                'gopalganj'=>'Gopalganj'
-                'kishoreganj'=>'Kishoreganj'
-                'madaripur'=>'Madaripur'
-                'manikganj'=>'Manikganj'
-                'munshiganj'=>'Munshiganj'
-                'narayanganj'=>'Narayanganj'
-                'narsingdi'=>'Narsingdi'
-                'rajbari'=>'Rajbari'
-                'shariatpur'=>'Shariatpur'
-                'tangail'=>'Tangail'
-                'bagerhat'=>'Bagerhat'
-                'chuadanga'=>'Chuadanga'
-                'jessore'=>'Jessore'
-                'jhenaidah'=>'Jhenaidah'
-                'khulna'=>'Khulna'
-                'kushtia'=>'Kushtia'
-                'magura'=>'Magura'
-                'meherpur'=>'Meherpur'
-                'narail'=>'Narail'
-                'satkhira'=>'Satkhira'
-                'jamalpur'=>'Jamalpur'
-                'mymensingh'=>'Mymensingh'
-                'netrakona'=>'Netrakona'
-                'sherpur'=>'Sherpur'
-                'joypurhat'=>'Joypurhat'
-                'naogaon'=>'Naogaon'
-                'natore'=>'Natore'
-                'chapainawabganj'=>'Chapainawabganj'
-                'pabna'=>'Pabna'
-                'rajshahi'=>'Rajshahi'
-                'sirajganj'=>'Sirajganj'
-                'dinajpur'=>'Dinajpur'
-                'gaibandha'=>'Gaibandha'
-                'kurigram'=>'Kurigram'
-                'lalmonirhat'=>'Lalmonirhat'
-                'nilphamari'=>'Nilphamari'
-                'panchagarh'=>'Panchagarh'
-                'rangpur'=>'Rangpur'
-                'thakurgaon'=>'Thakurgaon'
-                'habiganj'=>'Habiganj'
-                'moulvibazar'=>'Moulvibazar'
-                'sunamganj'=>'Sunamganj'
+                {!! Form::select('present_district', [
+                'barguna'=>'Barguna',
+                'bhola'=>'Bhola',
+                'bogra'=>'Bogra',
+                'jhalokati'=>'Jhalokati',
+                'patuakhali'=>'Patuakhali',
+                'pirojpur'=>'Pirojpur',
+                'bandarban'=>'Bandarban',
+                'brahmanbaria'=>'Brahmanbaria',
+                'chandpur'=>'Chandpur',
+                'chittagong'=>'Chittagong',
+                'comilla'=>'Comilla',
+                'cox-bazar'=>'Cox&rsquo;s Bazar',
+                'feni'=>'Feni',
+                'khagrachhari'=>'Khagrachhari',
+                'lakshmipur'=>'Lakshmipur',
+                'noakhali'=>'Noakhali',
+                'rangamati'=>'Rangamati',
+                'dhaka'=>'Dhaka',
+                'faridpur'=>'Faridpur',
+                'gazipur'=>'Gazipur',
+                'gopalganj'=>'Gopalganj',
+                'kishoreganj'=>'Kishoreganj',
+                'madaripur'=>'Madaripur',
+                'manikganj'=>'Manikganj',
+                'munshiganj'=>'Munshiganj',
+                'narayanganj'=>'Narayanganj',
+                'narsingdi'=>'Narsingdi',
+                'rajbari'=>'Rajbari',
+                'shariatpur'=>'Shariatpur',
+                'tangail'=>'Tangail',
+                'bagerhat'=>'Bagerhat',
+                'chuadanga'=>'Chuadanga',
+                'jessore'=>'Jessore',
+                'jhenaidah'=>'Jhenaidah',
+                'khulna'=>'Khulna',
+                'kushtia'=>'Kushtia',
+                'magura'=>'Magura',
+                'meherpur'=>'Meherpur',
+                'narail'=>'Narail',
+                'satkhira'=>'Satkhira',
+                'jamalpur'=>'Jamalpur',
+                'mymensingh'=>'Mymensingh',
+                'netrakona'=>'Netrakona',
+                'sherpur'=>'Sherpur',
+                'joypurhat'=>'Joypurhat',
+                'naogaon'=>'Naogaon',
+                'natore'=>'Natore',
+                'chapainawabganj'=>'Chapainawabganj',
+                'pabna'=>'Pabna',
+                'rajshahi'=>'Rajshahi',
+                'sirajganj'=>'Sirajganj',
+                'dinajpur'=>'Dinajpur',
+                'gaibandha'=>'Gaibandha',
+                'kurigram'=>'Kurigram',
+                'lalmonirhat'=>'Lalmonirhat',
+                'nilphamari'=>'Nilphamari',
+                'panchagarh'=>'Panchagarh',
+                'rangpur'=>'Rangpur',
+                'thakurgaon'=>'Thakurgaon',
+                'habiganj'=>'Habiganj',
+                'moulvibazar'=>'Moulvibazar',
+                'sunamganj'=>'Sunamganj',
                 'sylhet'=>'Sylhet'
-                ], null, ['class'=>'form-control select2', 'placeholder'=>'District-Choose from list']) !!}
+                ], 'dhaka', ['class'=>'form-control select2', 'placeholder'=>'District-Choose from list', 'style'=>'width: 100%;']) !!}
             </div>
             <div class="col-md-6">
                 {!! Form::text('present_zip', null, ['class'=>'form-control', 'placeholder'=>'Post Code']) !!}
@@ -224,7 +226,13 @@
         </div>
     </div>
 </fieldset>
+<br>
 <fieldset>
-    {!! Form::submit('Submit', ['class'=>'form-control']) !!}
+    <div class="divider"></div>
+    <div class="form-group">
+        <div class="col-md-12">
+            {!! Form::submit('Submit', ['class'=>'btn-success']) !!}
+        </div>
+    </div>
 </fieldset>
 {!! FOrm::close() !!}

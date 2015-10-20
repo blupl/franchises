@@ -1,17 +1,19 @@
 @set_meta('title', 'Player Form')
 
 
-{!! Form::open(['handles'=>'blupl/franchise::management/player']) !!}
+{!! Form::open(['url'=>'franchise/management/player']) !!}
+{!! Form::hidden('user_id', Auth::user()->id) !!}
+{!! Form::hidden('franchise_id', Auth::user()->franchise->id) !!}
 
 <fieldset>
     <div class="form-group">
         <div class="col-md-6">
             {!! Form::label('accredit_category', 'ACCREDITATION CATEGORY') !!}
-            {!! Form::text('accredit_category', null, ['class'=>'form-control']) !!}
+            {!! Form::text('accredit_category', 'Franchise', ['class'=>'form-control', 'readonly']) !!}
         </div>
         <div class="col-md-6">
             {!! Form::label('name_franchise', 'NAME OF FRANCHISE') !!}
-            {!! Form::text('name_franchise', null, ['class'=>'form-control']) !!}
+            {!! Form::select('name_franchise', [Auth::user()->franchise->id=>Auth::user()->franchise->name], Auth::user()->franchise->id, ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
         </div>
     </div>
     <div class="form-group">
@@ -32,13 +34,18 @@
         </div>
         <div class="col-md-6">
             {!! Form::label('role', 'ROLE') !!}
-            {!! Form::select('role', ['player'=>'Player'], 'player', ['class'=>'form-control select2']) !!}
+            {!! Form::select('role', ['player'=>'Player'], 'player', ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-6">
             {!! Form::label('date_of_birth', 'DATE OF BIRTH') !!}
-            {!! Form::text('date_of_birth', null, ['class'=>'form-control']) !!}
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::text('date_of_birth', null, ['class'=>'form-control', 'data-inputmask'=>"'alias': 'dd/mm/yyyy'",  'data-mask']) !!}
+            </div>
         </div>
         <div class="col-md-6">
             {!! Form::label('country_of_birth', 'COUNTRY OF BIRTH') !!}
@@ -65,7 +72,12 @@
         </div>
         <div class="col-md-6">
             {!! Form::label('passport_expiry', 'PASSPORT EXPIRY DATE') !!}
-            {!! Form::text('passport_expiry', null, ['class'=>'form-control']) !!}
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::text('passport_expiry', null, ['class'=>'form-control', 'data-inputmask'=>"'alias': 'dd/mm/yyyy'",  'data-mask']) !!}
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -78,13 +90,14 @@
                 'cricket-india'=>'Board of Control for Cricket in India',
                 'cricket-newzealand'=>'New Zealand Cricket',
                 'cricket-pakistan'=>'Pakistan Cricket Board',
-                'cricket-southafrica'=>'Cricket South Africa Sri Lanka'
-                'cricket-westindies'=>'Cricket West Indies Cricket
-                'cricket-zimbabwe'=>Board Zimbabwe Cricket
-                'cricket-afghanistan'=>Afghanistan Cricket Board
-                'cricket-scotland'=>Cricket Scotland
-                'cricket-royaldutch'=>Royal Dutch Cricket Association],
-            null, ['class'=>'form-control select2']) !!}
+                'cricket-southafrica'=>'Cricket South Africa Sri Lanka',
+                'cricket-westindies'=>'Cricket West Indies Cricket',
+                'cricket-zimbabwe'=>'Board Zimbabwe Cricket',
+                'cricket-afghanistan'=>'Afghanistan Cricket Board',
+                'cricket-scotland'=>'Cricket Scotland',
+                'cricket-royaldutch'=>'Royal Dutch Cricket Association'
+            ],
+            null, ['class'=>'form-control select2', 'style'=>'width: 100%;']) !!}
         </div>
         <div class="col-md-6">
             {!! Form::label('email', 'E-MAIL ID') !!}
@@ -103,6 +116,11 @@
     </div>
 </fieldset>
 <fieldset>
-    {!! Form::submit('Submit', ['class'=>'form-control']) !!}
+    <div class="divider"></div>
+    <div class="form-group">
+        <div class="col-md-12">
+            {!! Form::submit('Submit', ['class'=>'btn-success']) !!}
+        </div>
+    </div>
 </fieldset>
 {!! FOrm::close() !!}

@@ -4,9 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamSupportStuff extends Model {
 
-    protected $table = 'players';
+    protected $table = 'franchise_team_support_stuffs';
 
-    protected $morphClass = 'players';
+    protected $morphClass = 'franchise_team_support_stuffs';
 
     protected $fillable = [
         'user_id',
@@ -28,7 +28,8 @@ class TeamSupportStuff extends Model {
         'present_zip',
         'mobile',
         'email',
-        'photo'
+        'photo',
+        'attachment'
     ];
 
 }

@@ -11,12 +11,14 @@ use Orchestra\Support\Facades\Foundation;
 
 Foundation::group('blupl/franchise', 'franchise', ['namespace' => 'Blupl\Franchises\Http\Controllers'], function (Router $router) {
 //    $router->resource('registration', 'RegistrationController');
-        $router->post('management/team-stuff', 'FranchiseController@storeTeamStuff');
-        $router->post('management/team', 'FranchiseController@storeTeam');
-        $router->post('management/player', 'FranchiseController@player');
-        $router->post('management/franchise', 'FranchiseController@storeFranchise');
-        $router->get('management/{id}', 'FranchiseController@management');
-        $router->get('management', 'FranchiseController@index');
+        $router->post('management/team-support-stuffs', 'FranchiseController@storeTeamStuff');
+        $router->post('management/team-managements', 'FranchiseController@storeTeam');
+        $router->post('management/player', 'FranchiseController@storePlayer');
+        $router->post('management/franchise', 'FranchiseController@storeFranchiseManagement');
+        $router->get('management/{id}', 'FranchiseController@franchiseManagement');
+        $router->get('management', 'FranchiseController@franchise');
+        $router->post('store', 'FranchiseController@storeFranchise');
+        $router->get('create', 'FranchiseController@create');
         $router->get('/', 'FranchiseController@index');
 });
 

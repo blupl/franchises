@@ -12,7 +12,7 @@ class CreateTeamManagementsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('team_managements', function(Blueprint $table)
+		Schema::create('franchise_team_managements', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->tinyInteger('user_id');

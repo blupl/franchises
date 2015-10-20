@@ -12,7 +12,7 @@ class CreateTeamSupportStuffsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('team_support_stuffs', function(Blueprint $table)
+		Schema::create('franchise_team_support_stuffs', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->tinyInteger('user_id');
@@ -25,11 +25,11 @@ class CreateTeamSupportStuffsTable extends Migration {
             $table->string('role');
             $table->string('date_of_birth');
             $table->string('permanent_address1');
-            $table->string('permanent_address2');
+            $table->string('permanent_address2')->nullable();
             $table->string('permanent_district');
             $table->string('permanent_zip');
             $table->string('present_address1');
-            $table->string('present_address2');
+            $table->string('present_address2')->nullable();
             $table->string('present_district');
             $table->string('present_zip');
             $table->string('mobile', 20);

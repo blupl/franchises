@@ -5,7 +5,26 @@
 @endsection
 
 @section('content')
-    @include('blupl/franchises::form.'.$form)
+    {!! Form::open(['url'=>'franchise/store']) !!}
+    {!! Form::hidden('user_id', Auth::user()->id) !!}
+    <fieldset>
+        <div class="form-group">
+            <div class="col-md-6">
+                {!! Form::label('name', ' FRANCHISE NAME') !!}
+                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="divider"></div>
+        <div class="form-group">
+            <div class="col-md-12">
+                {!! Form::submit('Submit', ['class'=>'btn-success']) !!}
+            </div>
+        </div>
+    </fieldset>
+
+    {!! Form::close() !!}
 @stop
 
 

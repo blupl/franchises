@@ -2,25 +2,27 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class FranchisePlayerManagement extends Model {
+class FranchiseManagement extends Model {
 
-    protected $table = 'franchises';
+    protected $table = 'franchise_management';
 
     protected $morphClass = 'franchises';
 
     protected $fillable = [
+        'user_id',
+        'franchise_id',
         'accredit_category',
         'name_franchise',
-        'name_applicant',
-        'nationality',
-        'passport_nid',
-        'role',
-        'date_of_birth',
-        'country_of_birth',
-        'phone',
-        'passport_expire_date',
-        'noc',
-        'mail',
+        'name',
+        'designation',
+        'gender',
+        'email',
+        'mobile',
+        'address1',
+        'address2',
+        'city',
+        'zip',
+        'personal_id',
         'photo',
         'attachment'
     ];

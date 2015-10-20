@@ -14,17 +14,7 @@ class Franchise extends Model {
 
     protected $fillable = [
         'user_id',
-        'accredit_category',
-        'name_franchise',
-        'name',
-        'designation',
-        'gender',
-        'mail',
-        'mobile',
-        'address',
-        'passport_nid',
-        'photo',
-        'attachment'
+        'name'
     ];
 
     public function player()

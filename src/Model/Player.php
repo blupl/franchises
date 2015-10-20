@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Player extends Model {
 
 
-    protected $table = 'players';
+    protected $table = 'franchise_players';
 
     protected $morphClass = 'players';
 

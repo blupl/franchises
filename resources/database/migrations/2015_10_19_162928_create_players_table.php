@@ -12,7 +12,7 @@ class CreatePlayersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('players', function(Blueprint $table)
+		Schema::create('franchise_players', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->tinyInteger('user_id');

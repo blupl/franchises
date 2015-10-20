@@ -4,11 +4,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamManagement extends Model {
 
-    protected $table = 'team_managements';
+    protected $table = 'franchise_team_managements';
 
     protected $morphClass = 'team_managements';
 
     protected $fillable = [
+        'user_id',
+        'franchise_id',
         'accredit_category',
         'name_franchise',
         'name',
