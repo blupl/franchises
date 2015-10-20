@@ -15,19 +15,19 @@
         <tbody>
             <tr>
                 <td>Franchisee</td>
-                <td>  </td>
+                <td>{{ $franchise->management->count() }}</td>
             </tr>
             <tr>
                 <td>Player</td>
-                <td>  </td>
+                <td> {{ $franchise->player->count() }} </td>
             </tr>
             <tr>
                 <td>Team Managements</td>
-                <td>  </td>
+                <td> {{ $franchise->teamManagement->count() }} </td>
             </tr>
             <tr>
                 <td>Team Stuff Supports</td>
-                <td>  </td>
+                <td> {{ $franchise->teamSupportStuff->count() }} </td>
             </tr>
         </tbody>
     </table>

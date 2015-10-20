@@ -73,7 +73,8 @@ class FranchiseController extends AdminController
         if ($franchise == null) {
             return $this->redirect(handles('blupl/franchise::create'));
         } else {
-            return view('blupl/franchises::management.index');
+
+            return view('blupl/franchises::management.index', compact('franchise'));
         }
     }
 

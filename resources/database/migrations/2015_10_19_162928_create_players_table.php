@@ -31,7 +31,8 @@ class CreatePlayersTable extends Migration {
             $table->string('email');
             $table->string('photo');
             $table->string('attachment');
-			$table->timestamps();
+            $table->tinyInteger('status')->default('0');
+            $table->timestamps();
 		});
 	}
 
@@ -42,7 +43,7 @@ class CreatePlayersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('players');
+		Schema::drop('franchise_players');
 	}
 
 }

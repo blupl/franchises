@@ -17,18 +17,23 @@ class Franchise extends Model {
         'name'
     ];
 
+    public function management()
+    {
+        return $this->hasMany('Blupl\Franchises\Model\FranchiseManagement', 'franchise_id');
+    }
+
     public function player()
     {
-        $this->hasMany('Blupl\Franchise\Model\Player', 'franchise_id');
+        return $this->hasMany('Blupl\Franchises\Model\Player', 'franchise_id');
     }
 
     public function teamManagement()
     {
-        $this->hasMany('Blupl\Franchise\Model\TeamManagement', 'franchise_id');
+        return $this->hasMany('Blupl\Franchises\Model\TeamManagement', 'franchise_id');
     }
 
     public function teamSupportStuff()
     {
-        $this->hasMany('Blupl\Franchise\Model\TeamSupportStuff', 'franchise_id');
+        return $this->hasMany('Blupl\Franchises\Model\TeamSupportStuff', 'franchise_id');
     }
 }

@@ -36,7 +36,8 @@ class CreateTeamSupportStuffsTable extends Migration {
             $table->string('email');
             $table->string('photo');
             $table->string('attachment');
-			$table->timestamps();
+            $table->tinyInteger('status')->default('0');
+            $table->timestamps();
 		});
 	}
 
@@ -47,7 +48,7 @@ class CreateTeamSupportStuffsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('team_support_stuffs');
+		Schema::drop('franchise_team_support_stuffs');
 	}
 
 }

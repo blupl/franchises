@@ -31,6 +31,7 @@ class CreateFranchiseManagementTable extends Migration {
             $table->string('photo');
             $table->string('attachment');
             $table->string('personal_id');
+            $table->tinyInteger('status')->default('0');
 			$table->timestamps();
 		});
 	}
@@ -42,7 +43,7 @@ class CreateFranchiseManagementTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('franchises');
+		Schema::drop('franchise_management');
 	}
 
 }

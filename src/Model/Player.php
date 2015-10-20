@@ -28,4 +28,14 @@ class Player extends Model {
         'attachment'
     ];
 
+    public function franchise()
+    {
+        return $this->belongsTo('Blupl\Franchises\Model\Franchise', 'franchise_id');
+    }
+
+    public function zone()
+    {
+        return $this->morphMany('Blupl\PrintMedia\Model\Zone', 'zoneable');
+    }
+
 }

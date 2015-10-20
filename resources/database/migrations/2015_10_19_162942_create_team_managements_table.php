@@ -30,7 +30,8 @@ class CreateTeamManagementsTable extends Migration {
             $table->string('email');
             $table->string('photo');
             $table->string('attachment');
-			$table->timestamps();
+            $table->tinyInteger('status')->default('0');
+            $table->timestamps();
 		});
 	}
 
@@ -41,7 +42,7 @@ class CreateTeamManagementsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('team_managements');
+		Schema::drop('franchise_team_managements');
 	}
 
 }

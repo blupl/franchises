@@ -10,7 +10,12 @@ use Orchestra\Support\Facades\Foundation;
 */
 
 Foundation::group('blupl/franchise', 'franchise', ['namespace' => 'Blupl\Franchises\Http\Controllers'], function (Router $router) {
-//    $router->resource('registration', 'RegistrationController');
+
+        $router->put('approval/franchise/{franchise}/{category}/{id}', ['as' => 'franchise.approval.zone', 'uses'=>'ApprovalController@update']);
+        $router->get('approval/franchise/{franchise}/{category}/{id}', 'ApprovalController@showFranchise');
+        $router->get('approval/franchise/{id}/{category}', 'ApprovalController@show');
+        $router->get('approval', 'ApprovalController@index');
+
         $router->post('management/team-support-stuffs', 'FranchiseController@storeTeamStuff');
         $router->post('management/team-managements', 'FranchiseController@storeTeam');
         $router->post('management/player', 'FranchiseController@storePlayer');
