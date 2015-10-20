@@ -77,7 +77,7 @@ class ApprovalController extends AdminController
                 foreach ($request->zone as $zone) {
                     $item->zone()->create(['zone'=>$zone]);
                 }
-//                dd('yoo');
+
                 $item->status = 1;
                 $item->save();
         }else {
