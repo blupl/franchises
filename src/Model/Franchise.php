@@ -13,16 +13,32 @@ class Franchise extends Model {
     ];
 
     protected $fillable = [
+        'user_id',
         'accredit_category',
         'name_franchise',
-        'name_applicant',
-        'design',
+        'name',
+        'designation',
         'gender',
         'mail',
-        'phone',
+        'mobile',
         'address',
         'passport_nid',
         'photo',
         'attachment'
     ];
+
+    public function player()
+    {
+        $this->hasMany('Blupl\Franchise\Model\Player', 'franchise_id');
+    }
+
+    public function teamManagement()
+    {
+        $this->hasMany('Blupl\Franchise\Model\TeamManagement', 'franchise_id');
+    }
+
+    public function teamSupportStuff()
+    {
+        $this->hasMany('Blupl\Franchise\Model\TeamSupportStuff', 'franchise_id');
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFranchisesTable extends Migration {
+class CreateTeamManagementsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,24 +12,24 @@ class CreateFranchisesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('franchises', function(Blueprint $table)
+		Schema::create('team_managements', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->tinyInteger('user_id');
+            $table->tinyInteger('franchise_id');
             $table->string('accredit_category', 20);
             $table->string('name_franchise');
             $table->string('name');
-            $table->string('designation');
-            $table->string('gender');
-            $table->string('mail');
+            $table->string('nationality');
+            $table->string('personal_id', 19);
+            $table->string('role');
+            $table->string('date_of_birth');
+            $table->string('country_of_birth');
             $table->string('mobile', 20);
-            $table->string('address1', 100);
-            $table->string('address2', 100);
-            $table->string('city', 25);
-            $table->string('zip', 10);
+            $table->string('passport_expiry');
+            $table->string('email');
             $table->string('photo');
             $table->string('attachment');
-            $table->string('personal_id', 19);
 			$table->timestamps();
 		});
 	}
@@ -41,7 +41,7 @@ class CreateFranchisesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('franchises');
+		Schema::drop('team_managements');
 	}
 
 }
